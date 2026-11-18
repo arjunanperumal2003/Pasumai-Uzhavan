@@ -9,31 +9,31 @@ import styles from "./Carsole.module.css";
 const slides = [
 
   {
-    video: "/carsoleVideos/clip01.mp4",
+    video: "/CarsoleVideos/clip01.mp4",
     title: "High Quality Fertilizers",
     desc: "Boost crop growth with trusted plant nutrients"
   },
 
   {
-    video: "/carsoleVideos/clip02.mp4",
+    video: "/CarsoleVideos/clip02.mp4",
     title: "Healthy Seeds for Better Yield",
     desc: "Strong seeds produce strong harvest"
   },
 
   {
-    video: "/carsoleVideos/clip03.mp4",
+    video: "/CarsoleVideos/clip03.mp4",
     title: "Protect Crops from Pests",
     desc: "Effective pesticides for safe farming"
   },
 
   {
-    video: "/carsoleVideos/clip04.mp4",
+    video: "/CarsoleVideos/clip04.mp4",
     title: "Improve Soil Fertility",
     desc: "Soil conditioners for better productivity"
   },
 
   {
-    video: "/carsoleVideos/clip05.mp4",
+    video: "/CarsoleVideos/clip05.mp4",
     title: "Organic Farming Solutions",
     desc: "Eco friendly products for sustainable agriculture"
   }
