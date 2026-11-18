@@ -1,0 +1,117 @@
+/* Brands.module.css */
+
+.brand{
+  padding:40px 20px;
+}
+
+/* container */
+.brandContainer{
+  margin-top:30px;
+  color:black;
+
+  display:flex;
+  gap:20px;
+
+  flex-wrap:wrap;
+
+  align-items:center;
+  justify-content:center;
+}
+
+/* card */
+.brandCard{
+  width:180px;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+
+  background:white;
+
+  border-radius:20px;
+
+  padding:15px;
+
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+
+  transition:0.3s;
+}
+
+.brandCard:hover{
+  transform:translateY(-5px);
+}
+
+/* image */
+.brandCard img{
+  width:100%;
+  max-width:120px;
+  height:auto;
+
+  border-radius:30px;
+
+  object-fit:contain;
+}
+
+/* text */
+.brandCard p{
+  text-align:center;
+  padding-top:10px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+
+/* tablet */
+@media(max-width:1024px){
+
+  .brandCard{
+    width:150px;
+  }
+
+}
+
+
+/* phone → 3 per row */
+@media(max-width:768px){
+
+  .brand{
+    padding:30px 15px;
+  }
+
+  .brandContainer{
+    gap:15px;
+  }
+
+  .brandCard{
+    flex: 0 0 calc(33.33% - 10px);
+    padding:12px;
+  }
+
+  .brandCard img{
+    max-width:80px;
+  }
+
+  .brandCard p{
+    font-size:14px;
+  }
+
+}
+
+
+/* very small phone */
+@media(max-width:480px){
+
+  .brandCard{
+    flex: 0 0 calc(33.33% - 10px);
+  }
+
+  .brandCard img{
+    max-width:65px;
+  }
+
+  .brandCard p{
+    font-size:13px;
+  }
+
+}

@@ -1,0 +1,516 @@
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+  width: 100%;
+  max-width: 1250px;
+  min-height: 70vh;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+
+/* =========================================================
+   PAGE HEADING
+========================================================= */
+
+.heading {
+  margin: 0 0 32px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+
+/* =========================================================
+   WISHLIST GRID
+========================================================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 410px;
+  padding: 18px;
+
+  overflow: hidden;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+
+  border-color: #86efac;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+.image {
+  width: 100%;
+  height: 210px;
+
+  object-fit: contain;
+
+  padding: 10px;
+  margin-bottom: 16px;
+
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+
+/* =========================================================
+   PRODUCT NAME
+========================================================= */
+
+.name {
+  margin: 0 0 8px;
+
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  color: #1f2937;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+  margin: 0 0 10px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #6b7280;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.price {
+  margin: 0 0 18px;
+
+  font-size: 21px;
+  font-weight: 700;
+
+  color: #15803d;
+}
+
+
+/* =========================================================
+   ACTION BUTTON AREA
+========================================================= */
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-top: auto;
+}
+
+
+/* =========================================================
+   MOVE TO CART BUTTON
+========================================================= */
+
+.cartBtn {
+  width: 100%;
+
+  padding: 12px 16px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #15803d;
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cartBtn:hover {
+  background: #166534;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 12px rgba(21, 128, 61, 0.25);
+}
+
+.cartBtn:active {
+  transform: scale(0.98);
+}
+
+
+/* =========================================================
+   REMOVE BUTTON
+========================================================= */
+
+.removeBtn {
+  width: 100%;
+
+  padding: 11px 16px;
+
+  border: 1px solid #fecaca;
+  border-radius: 9px;
+
+  background: #ffffff;
+  color: #dc2626;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.removeBtn:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+
+  transform: translateY(-1px);
+}
+
+.removeBtn:active {
+  transform: scale(0.98);
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading {
+  min-height: 60vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  color: #6b7280;
+}
+
+
+/* =========================================================
+   LOGIN REQUIRED BOX
+========================================================= */
+
+.loginBox {
+  width: calc(100% - 40px);
+  max-width: 520px;
+
+  margin: 80px auto;
+  padding: 45px 30px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.loginBox h2 {
+  margin: 0 0 12px;
+
+  font-size: 25px;
+  font-weight: 700;
+
+  color: #1f2937;
+}
+
+.loginBox p {
+  margin: 0;
+
+  font-size: 16px;
+  line-height: 1.6;
+
+  color: #6b7280;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.loginButton {
+  margin-top: 24px;
+
+  padding: 12px 30px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #15803d;
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.loginButton:hover {
+  background: #166534;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 18px rgba(21, 128, 61, 0.25);
+}
+
+.loginButton:active {
+  transform: scale(0.98);
+}
+
+
+/* =========================================================
+   EMPTY WISHLIST
+========================================================= */
+
+.empty {
+  width: calc(100% - 40px);
+  max-width: 520px;
+
+  margin: 80px auto;
+  padding: 45px 30px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.empty h2 {
+  margin: 0 0 12px;
+
+  font-size: 25px;
+  font-weight: 700;
+
+  color: #1f2937;
+}
+
+.empty p {
+  margin: 0;
+
+  font-size: 16px;
+  line-height: 1.6;
+
+  color: #6b7280;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .container {
+    padding: 30px 18px 50px;
+  }
+
+  .heading {
+    margin-bottom: 24px;
+    font-size: 27px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    min-height: 390px;
+    padding: 14px;
+  }
+
+  .image {
+    height: 180px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+  .container {
+    padding: 24px 12px 45px;
+  }
+
+  .heading {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  /* TWO PRODUCTS PER ROW */
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    min-height: 340px;
+
+    padding: 10px;
+
+    border-radius: 12px;
+  }
+
+  .image {
+    height: 135px;
+
+    padding: 5px;
+    margin-bottom: 10px;
+
+    border-radius: 8px;
+  }
+
+  .name {
+    margin-bottom: 5px;
+
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .brand {
+    margin-bottom: 6px;
+
+    font-size: 12px;
+  }
+
+  .price {
+    margin-bottom: 12px;
+
+    font-size: 16px;
+  }
+
+  .actions {
+    gap: 7px;
+  }
+
+  .cartBtn {
+    padding: 9px 5px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+  }
+
+  .removeBtn {
+    padding: 8px 5px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+  }
+
+  .loginBox,
+  .empty {
+    width: calc(100% - 30px);
+
+    margin: 50px auto;
+
+    padding: 35px 20px;
+  }
+
+  .loginBox h2,
+  .empty h2 {
+    font-size: 21px;
+  }
+
+  .loginBox p,
+  .empty p {
+    font-size: 14px;
+  }
+
+  .loginButton {
+    width: 100%;
+
+    padding: 12px 20px;
+  }
+
+}

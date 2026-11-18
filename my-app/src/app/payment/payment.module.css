@@ -1,0 +1,180 @@
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 24px;
+  font-family: system-ui, sans-serif;
+  background-color: #f9fbf9;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8e2;
+}
+
+.header {
+  border-bottom: 2px solid #e8f5e9;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  color: #1b5e20;
+}
+
+.subtitle {
+  margin: 6px 0 0 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.itemCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: #fff;
+  borderRadius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.itemLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  flex-shrink: 0;
+  border: 1px solid #eee;
+}
+
+.itemBrand {
+  font-size: 12px;
+  color: #666;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.itemName {
+  font-size: 14px;
+  color: #222;
+  display: block;
+}
+
+.itemQty {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+.itemPrice {
+  font-size: 16px;
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.paymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.paymentLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background-color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.paymentText {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.footer {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 20px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.totalLabel {
+  color: #444;
+}
+
+.totalValue {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.placeOrderButton {
+  width: 100%;
+  padding: 14px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
+  transition: background-color 0.2s;
+}
+
+.loadingContainer {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: system-ui, sans-serif;
+}
+
+.loadingTitle {
+  color: #2e7d32;
+}

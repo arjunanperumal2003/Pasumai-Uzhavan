@@ -1,0 +1,649 @@
+
+/* =========================================
+   ORDERS PAGE - MAIN CONTAINER
+========================================= */
+
+.container {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 35px 24px 70px;
+  min-height: 70vh;
+  box-sizing: border-box;
+  color: #1f2937;
+}
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.container > .header {
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  color: #17251d;
+  margin: 0;
+}
+
+.retryButton {
+  border: 1px solid #d1e5d6;
+  background: #f0f8f1;
+  color: #176b36;
+  padding: 10px 18px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.retryButton:hover {
+  background: #176b36;
+  border-color: #176b36;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   ORDER CARD
+========================================= */
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e5ebe6;
+  border-radius: 15px;
+  padding: 24px;
+  margin-bottom: 22px;
+  box-shadow: 0 3px 14px rgba(20, 55, 30, 0.045);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 25px rgba(20, 55, 30, 0.08);
+  transform: translateY(-2px);
+}
+
+.card > .header {
+  padding-bottom: 18px;
+  border-bottom: 1px solid #edf0ed;
+}
+
+.orderLabel {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.card > .header b {
+  font-size: 13px;
+  color: #263c2e;
+  word-break: break-all;
+}
+
+.date {
+  font-size: 13px;
+  color: #7b8490;
+}
+
+/* =========================================
+   ORDER STATUS
+========================================= */
+
+.placed,
+.cancelled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 13px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.placed {
+  background: #e8f6ec;
+  color: #18733a;
+}
+
+.cancelled {
+  background: #fff0f0;
+  color: #dc2626;
+}
+
+/* =========================================
+   PRODUCT LIST
+========================================= */
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 8px 0;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 17px 0;
+  border-bottom: 1px solid #f0f2f0;
+}
+
+.product:last-child {
+  border-bottom: none;
+}
+
+.image {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  flex-shrink: 0;
+  padding: 7px;
+  background: #f7faf7;
+  border: 1px solid #edf1ed;
+  border-radius: 11px;
+  box-sizing: border-box;
+}
+
+.details {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemName {
+  font-size: 15px;
+  font-weight: 700;
+  color: #26352b;
+  margin: 0 0 7px;
+  line-height: 1.4;
+}
+
+.itemQty {
+  font-size: 13px;
+  color: #737d76;
+  margin: 4px 0;
+}
+
+.itemPrice {
+  font-size: 13px;
+  color: #737d76;
+  margin: 5px 0;
+}
+
+.details strong {
+  color: #176b36;
+  font-size: 14px;
+}
+
+/* =========================================
+   ORDER FOOTER
+========================================= */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-top: 1px solid #edf0ed;
+  padding-top: 19px;
+  margin-top: 5px;
+}
+
+.infoGroup {
+  flex: 1;
+  min-width: 220px;
+}
+
+.infoGroup p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #68736c;
+  margin: 4px 0;
+  overflow-wrap: anywhere;
+}
+
+.infoGroup b {
+  color: #26352b;
+}
+
+.total {
+  font-size: 14px;
+  color: #68736c;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.total span {
+  color: #176b36;
+  font-size: 22px;
+  font-weight: 800;
+  margin-left: 5px;
+}
+
+/* =========================================
+   CANCEL ORDER
+========================================= */
+
+.cancelSection {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.cancelButton {
+  background: #fff;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 10px 19px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cancelButton:hover {
+  background: #dc2626;
+  color: #fff;
+  border-color: #dc2626;
+}
+
+.cancelButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.deliveredMessage {
+  margin: 18px 0 0;
+  padding: 11px 14px;
+  background: #effaf2;
+  color: #18733a;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.reason {
+  background: #fff7f7;
+  color: #a12b2b;
+  border-left: 3px solid #dc2626;
+  padding: 12px 15px;
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 16px 0 0;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   CANCELLATION MODAL
+========================================= */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(12, 25, 17, 0.58);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  width: 100%;
+  max-width: 450px;
+  background: #ffffff;
+  color: #26352b;
+  padding: 30px;
+  border-radius: 17px;
+  box-shadow: 0 20px 65px rgba(0, 0, 0, 0.2);
+  animation: modalIn 0.25s ease;
+  box-sizing: border-box;
+}
+
+.modal h2 {
+  font-size: 23px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: #1e3024;
+}
+
+.modal p {
+  color: #737d76;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 22px;
+  overflow-wrap: anywhere;
+}
+
+.modal label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #34463a;
+  margin-bottom: 9px;
+}
+
+.modal textarea {
+  width: 100%;
+  min-height: 105px;
+  padding: 13px;
+  border: 1px solid #dce5de;
+  border-radius: 9px;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal textarea:focus {
+  border-color: #238344;
+  box-shadow: 0 0 0 3px rgba(35, 131, 68, 0.1);
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 11px;
+  margin-top: 23px;
+  flex-wrap: wrap;
+}
+
+.closeButton,
+.confirmCancelButton {
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.closeButton {
+  background: #f1f4f1;
+  color: #46544a;
+  border: 1px solid #e0e6e1;
+}
+
+.closeButton:hover {
+  background: #e5ebe6;
+}
+
+.confirmCancelButton {
+  background: #dc2626;
+  color: #fff;
+  border: 1px solid #dc2626;
+}
+
+.confirmCancelButton:hover {
+  background: #b91c1c;
+}
+
+.closeButton:disabled,
+.confirmCancelButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty {
+  text-align: center;
+  padding: 65px 25px;
+  background: #ffffff;
+  border: 1px solid #e7eee8;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+.empty h2 {
+  color: #24372a;
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+
+.empty p {
+  color: #78837b;
+  font-size: 14px;
+  margin-bottom: 22px;
+}
+
+.loginButton {
+  background: #176b36;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.loginButton:hover {
+  background: #10552a;
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   LOGIN BOX
+========================================= */
+
+.loginBox {
+  max-width: 450px;
+  margin: 70px auto;
+  padding: 45px 25px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #e5ebe6;
+  border-radius: 16px;
+  box-shadow: 0 5px 25px rgba(20, 55, 30, 0.06);
+}
+
+.loginIcon {
+  font-size: 45px;
+  margin-bottom: 15px;
+}
+
+.loginBox h2 {
+  color: #203c29;
+  margin-bottom: 10px;
+}
+
+.loginBox p {
+  color: #78837b;
+  margin-bottom: 22px;
+}
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading {
+  text-align: center;
+  padding: 65px 20px;
+  color: #176b36;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 25px 17px 50px;
+  }
+
+  .title {
+    font-size: 25px;
+  }
+
+  .card {
+    padding: 19px;
+  }
+
+  .card > .header {
+    gap: 12px;
+  }
+
+  .footer {
+    align-items: flex-start;
+  }
+
+  .total {
+    width: 100%;
+    text-align: right;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+  .container {
+    padding: 20px 12px 40px;
+  }
+
+  .container > .header {
+    align-items: center;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .retryButton {
+    padding: 9px 12px;
+    font-size: 11px;
+  }
+
+  .card {
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+
+  .card > .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+  }
+
+  .card > .header > div {
+    grid-column: 1 / -1;
+  }
+
+  .date {
+    font-size: 11px;
+  }
+
+  .placed,
+  .cancelled {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  .product {
+    gap: 12px;
+    padding: 14px 0;
+  }
+
+  .image {
+    width: 68px;
+    height: 68px;
+    padding: 5px;
+  }
+
+  .itemName {
+    font-size: 13px;
+  }
+
+  .itemQty,
+  .itemPrice {
+    font-size: 12px;
+  }
+
+  .footer {
+    gap: 12px;
+  }
+
+  .infoGroup {
+    min-width: 100%;
+  }
+
+  .infoGroup p {
+    font-size: 12px;
+  }
+
+  .total span {
+    font-size: 19px;
+  }
+
+  .cancelButton {
+    width: 100%;
+  }
+
+  .modal {
+    padding: 22px 18px;
+  }
+
+  .modal h2 {
+    font-size: 20px;
+  }
+
+  .modalActions {
+    flex-direction: column-reverse;
+  }
+
+  .closeButton,
+  .confirmCancelButton {
+    width: 100%;
+  }
+}
