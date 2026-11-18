@@ -14,7 +14,7 @@ const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const wishlistRoutes = require("./routes/wishlistRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
-const orderRoutes = require("./routes/orderRoutes"); // NEW
+const orderRoutes = require("./routes/orderRoutes");
 
 const app = express();
 
@@ -27,16 +27,53 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // =====================================================
-// CORS
+// CORS CONFIGURATION
 // =====================================================
 
-app.use(
-  cors({
-    origin:
-      process.env.FRONTEND_URL || "http://localhost:3000",
-    credentials: true,
-  })
-);
+const allowedOrigins = [
+  "https://pasumai-uzhavan-app-seven.vercel.app",
+  "http://localhost:3000",
+  process.env.FRONTEND_URL,
+]
+  .filter(Boolean)
+  .flatMap((origin) => origin.split(","))
+  .map((origin) => origin.trim().replace(/\/+$/, ""));
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests without an Origin header
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    console.error("CORS BLOCKED ORIGIN:", origin);
+
+    return callback(new Error("Not allowed by CORS"));
+  },
+
+  credentials: true,
+
+  methods: [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+  ],
+
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "Accept",
+  ],
+};
+
+app.use(cors(corsOptions));
 
 // =====================================================
 // BODY PARSER
