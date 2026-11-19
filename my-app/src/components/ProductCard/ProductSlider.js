@@ -18,6 +18,7 @@ const API_BASE_URL = (
   "https://pasumai-uzhavan.onrender.com"
 ).replace(/\/+$/, "");
 
+// PRODUCT API URL
 const PRODUCT_API_URL = `${API_BASE_URL}/api/products`;
 
 // GET PRODUCT ID
@@ -134,6 +135,7 @@ export default function ProductSlider({
         }
 
         setProducts(productList.slice(0, 10));
+
       } catch (err) {
         if (err.name === "AbortError") return;
 
@@ -141,6 +143,7 @@ export default function ProductSlider({
 
         setProducts([]);
         setError(err.message || "Unable to load products");
+
       } finally {
         if (!controller.signal.aborted) {
           setLoading(false);
@@ -151,6 +154,7 @@ export default function ProductSlider({
     fetchProducts();
 
     return () => controller.abort();
+
   }, [type]);
 
   // LOADING
