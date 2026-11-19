@@ -11,9 +11,25 @@ import { useEffect, useState } from "react";
 import styles from "./ProductCard.module.css";
 import toast from "react-hot-toast";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+// API CONFIGURATION
+const API_BASE_URL = (
+  process.env.NEXT_PUBLIC_API_URL ||
+  "https://pasumai-uzhavan.onrender.com"
+).replace(/\/+$/, "");
 
+// GET PRODUCT ID
+const getProductId = (product) => {
+  const id =
+    product?.id ??
+    product?._id?.$oid ??
+    product?._id ??
+    product?.productId ??
+    product?.sku;
+
+  return id !== undefined && id !== null ? String(id) : "";
+};
+
+// DEFAULT RATING
 const getDefaultRating = (id) => {
   const seed = String(id || "product")
     .split("")
@@ -38,14 +54,18 @@ export default function ProductCard({ product }) {
   if (!product) return null;
 
   // PRODUCT DATA
-  const productId = String(product?.id ?? product?._id ?? "");
+  const productId = getProductId(product);
 
   const name = product?.name ?? "Product";
   const brand = product?.brand ?? "Pasumai Uzhavan";
   const category = product?.category ?? "General";
 
   const mrp =
-    Number(product?.mrp ?? product?.pricing?.mrp ?? 0) || 0;
+    Number(
+      product?.mrp ??
+      product?.pricing?.mrp ??
+      0
+    ) || 0;
 
   const price =
     Number(
@@ -57,11 +77,16 @@ export default function ProductCard({ product }) {
     ) || 0;
 
   const discount =
-    Number(product?.discount ?? product?.pricing?.discount ?? 0) || 0;
+    Number(
+      product?.discount ??
+      product?.pricing?.discount ??
+      0
+    ) || 0;
 
   // RATING
   const rawRating =
     product?.ratingAverage ??
+    product?.rating_average ??
     product?.averageRating ??
     product?.average_rating ??
     product?.avgRating ??
@@ -111,7 +136,7 @@ export default function ProductCard({ product }) {
     router.push(`/login?redirect=${redirectUrl}`);
   };
 
-  // AUTHENTICATION
+  // AUTHENTICATION AND WISHLIST
   useEffect(() => {
     let active = true;
 
@@ -141,10 +166,9 @@ export default function ProductCard({ product }) {
 
         const authData = await authResponse.json();
 
-        // Require a confirmed user and valid ID.
         if (
           authData?.success !== true ||
-          !authData?.user?.id
+          !(authData?.user?.id ?? authData?.user?._id)
         ) {
           setLoggedIn(false);
           setWishlisted(false);
@@ -156,7 +180,6 @@ export default function ProductCard({ product }) {
 
         if (!productId) return;
 
-        // LOAD WISHLIST ONLY FOR LOGGED-IN USERS
         const wishlistResponse = await fetch(
           `${API_BASE_URL}/api/wishlist/my`,
           {
@@ -185,14 +208,20 @@ export default function ProductCard({ product }) {
 
         const items = Array.isArray(wishlistData)
           ? wishlistData
-          : wishlistData.items || [];
+          : wishlistData?.items || [];
 
         const existingItem = items.find(
-          (item) => String(item.productId) === productId
+          (item) =>
+            String(item.productId ?? item.product_id) === productId
         );
 
         setWishlisted(Boolean(existingItem));
-        setWishlistItemId(existingItem?.id ?? null);
+
+        setWishlistItemId(
+          existingItem?.id ??
+          existingItem?._id ??
+          null
+        );
       } catch (error) {
         console.error("PRODUCT AUTH/WISHLIST ERROR:", error);
 
@@ -280,14 +309,20 @@ export default function ProductCard({ product }) {
 
     const items = Array.isArray(data)
       ? data
-      : data.items || [];
+      : data?.items || [];
 
     const existingItem = items.find(
-      (item) => String(item.productId) === productId
+      (item) =>
+        String(item.productId ?? item.product_id) === productId
     );
 
     setWishlisted(Boolean(existingItem));
-    setWishlistItemId(existingItem?.id ?? null);
+
+    setWishlistItemId(
+      existingItem?.id ??
+      existingItem?._id ??
+      null
+    );
   };
 
   // WISHLIST
@@ -321,7 +356,7 @@ export default function ProductCard({ product }) {
         }
 
         const response = await fetch(
-          `${API_BASE_URL}/api/wishlist/${wishlistItemId}`,
+          `${API_BASE_URL}/api/wishlist/${encodeURIComponent(wishlistItemId)}`,
           {
             method: "DELETE",
             credentials: "include",
@@ -473,7 +508,10 @@ export default function ProductCard({ product }) {
 
   // VIEW PRODUCT
   const goToView = () => {
-    if (!productId) return;
+    if (!productId) {
+      toast.error("Product ID not found");
+      return;
+    }
 
     router.push(`/product/${encodeURIComponent(productId)}`);
   };
@@ -515,6 +553,7 @@ export default function ProductCard({ product }) {
           priority={false}
           unoptimized
           onError={(event) => {
+            event.currentTarget.onerror = null;
             event.currentTarget.src = "/uploads/default.png";
           }}
         />

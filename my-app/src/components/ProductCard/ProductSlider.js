@@ -79,6 +79,7 @@ export default function ProductSlider({
 
         if (!response.ok) {
           const errorText = await response.text();
+
           throw new Error(
             `API Error ${response.status}: ${errorText}`
           );
@@ -89,7 +90,9 @@ export default function ProductSlider({
         console.log("PRODUCT API RESPONSE:", data);
 
         if (data?.success === false) {
-          throw new Error(data.message || "Product API returned an error");
+          throw new Error(
+            data.message || "Product API returned an error"
+          );
         }
 
         let productList = extractProducts(data).filter(
