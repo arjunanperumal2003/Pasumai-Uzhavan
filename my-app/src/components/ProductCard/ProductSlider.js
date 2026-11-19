@@ -15,8 +15,10 @@ import styles from "./ProductSlider.module.css";
 // API CONFIGURATION
 const API_BASE_URL = (
   process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:5000"
+  "https://pasumai-uzhavan.onrender.com"
 ).replace(/\/+$/, "");
+
+const PRODUCT_API_URL = `${API_BASE_URL}/api/products`;
 
 // GET PRODUCT ID
 const getProductId = (product) => {
@@ -27,36 +29,17 @@ const getProductId = (product) => {
     product?.productId ??
     product?.sku;
 
-  return id !== undefined && id !== null
-    ? String(id)
-    : "";
+  return id !== undefined && id !== null ? String(id) : "";
 };
 
-// GET PRODUCTS FROM DIFFERENT API RESPONSE FORMATS
+// EXTRACT PRODUCTS
 const extractProducts = (data) => {
-  if (Array.isArray(data)) {
-    return data;
-  }
-
-  if (Array.isArray(data?.products)) {
-    return data.products;
-  }
-
-  if (Array.isArray(data?.items)) {
-    return data.items;
-  }
-
-  if (Array.isArray(data?.data)) {
-    return data.data;
-  }
-
-  if (Array.isArray(data?.data?.products)) {
-    return data.data.products;
-  }
-
-  if (Array.isArray(data?.result)) {
-    return data.result;
-  }
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.products)) return data.products;
+  if (Array.isArray(data?.items)) return data.items;
+  if (Array.isArray(data?.data)) return data.data;
+  if (Array.isArray(data?.data?.products)) return data.data.products;
+  if (Array.isArray(data?.result)) return data.result;
 
   return [];
 };
@@ -72,7 +55,6 @@ export default function ProductSlider({
   const swiperRef = useRef(null);
   const router = useRouter();
 
-  // FETCH PRODUCTS
   useEffect(() => {
     const controller = new AbortController();
 
@@ -82,11 +64,9 @@ export default function ProductSlider({
         setError("");
         setProducts([]);
 
-        const apiUrl = `${API_BASE_URL}/api/products`;
+        console.log("PRODUCT API URL:", PRODUCT_API_URL);
 
-        console.log("PRODUCT API URL:", apiUrl);
-
-        const response = await fetch(apiUrl, {
+        const response = await fetch(PRODUCT_API_URL, {
           method: "GET",
           signal: controller.signal,
           headers: {
@@ -95,9 +75,12 @@ export default function ProductSlider({
           cache: "no-store",
         });
 
+        console.log("PRODUCT API STATUS:", response.status);
+
         if (!response.ok) {
+          const errorText = await response.text();
           throw new Error(
-            `Product API failed: ${response.status} ${response.statusText}`
+            `API Error ${response.status}: ${errorText}`
           );
         }
 
@@ -105,14 +88,18 @@ export default function ProductSlider({
 
         console.log("PRODUCT API RESPONSE:", data);
 
+        if (data?.success === false) {
+          throw new Error(data.message || "Product API returned an error");
+        }
+
         let productList = extractProducts(data).filter(
-          (product) => product && typeof product === "object"
+          (product) =>
+            product &&
+            typeof product === "object" &&
+            getProductId(product)
         );
 
-        // REMOVE PRODUCTS WITHOUT ID
-        productList = productList.filter((product) =>
-          getProductId(product)
-        );
+        console.log("TOTAL PRODUCTS:", productList.length);
 
         // MOST SELLING FILTER
         if (type === "most-selling") {
@@ -143,13 +130,9 @@ export default function ProductSlider({
           });
         }
 
-        // LIMIT PRODUCTS
         setProducts(productList.slice(0, 10));
-
       } catch (err) {
-        if (err.name === "AbortError") {
-          return;
-        }
+        if (err.name === "AbortError") return;
 
         console.error("PRODUCT SLIDER ERROR:", err);
 
@@ -164,9 +147,7 @@ export default function ProductSlider({
 
     fetchProducts();
 
-    return () => {
-      controller.abort();
-    };
+    return () => controller.abort();
   }, [type]);
 
   // LOADING
@@ -182,7 +163,7 @@ export default function ProductSlider({
   if (error) {
     return (
       <h2 className={styles.loading}>
-        Unable to load products. Please try again later.
+        Unable to load products. {error}
       </h2>
     );
   }
@@ -196,19 +177,13 @@ export default function ProductSlider({
     );
   }
 
-  // UI
+  // PRODUCT SLIDER
   return (
     <div className={styles.wrapper}>
-
-      {/* HEADER */}
       <div className={styles.header}>
-
-        <h2 className={styles.title}>
-          {title}
-        </h2>
+        <h2 className={styles.title}>{title}</h2>
 
         <div className={styles.controls}>
-
           <button
             type="button"
             className={styles.prev}
@@ -238,11 +213,9 @@ export default function ProductSlider({
           >
             View All →
           </button>
-
         </div>
       </div>
 
-      {/* PRODUCT SLIDER */}
       <Swiper
         modules={[Navigation]}
         onSwiper={(swiper) => {
@@ -253,13 +226,12 @@ export default function ProductSlider({
         navigation={false}
         className={styles.slider}
       >
-
-        {products.map((item) => {
+        {products.map((item, index) => {
           const itemId = getProductId(item);
 
           return (
             <SwiperSlide
-              key={itemId}
+              key={itemId || index}
               className={styles.slide}
             >
               <ProductCard
@@ -271,9 +243,7 @@ export default function ProductSlider({
             </SwiperSlide>
           );
         })}
-
       </Swiper>
-
     </div>
   );
 }
